@@ -1,0 +1,14 @@
+- hosts: web
+  tasks: 
+    - name: install webserver
+      package: 
+       name: httpd
+       state: present
+    - name: deploy the website to DocumentRoot
+      copy: 
+       src: ./index.html
+       dest: /var/www/html/index.html
+    - name: start webserver
+      service: 
+       name: httpd
+       state: restarted
